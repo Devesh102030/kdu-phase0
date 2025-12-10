@@ -69,6 +69,25 @@ CREATE INDEX idx_category_id ON content(category_id);
 
 
 
+# The 3 Why's
+
+## Why #1: Why do we use Foreign Keys?
+Foreign key is a column or set of columns that referes to a primary key or unique key 
+in another table. It helps to maintain the data intigrity between the two tables. 
+In our database content.category_id is a foreign key that referes to category_id in 
+category table. 
+It helps to prevent any entry in the content table whose category_id is not present in 
+the category table. 
+
+
+## Why #2: Why is ACID important for this database?
+ACID properties help ensure that concurrent updates behave correctly. Without ACID properties there would be no proper isolation.
+For example, if 100 users are already watching a show and two new users join at the same time both transactions may read the same current view count and increment it by one. Without isolation the view count would become 101 instead of 102 thus resulting in a race condition.
+
+
+## Why #3: Why would we create an index on category_id?
+We create an index on category_id for faster lookup of records based on category. Without an index, if we search by category PostgreSQL has to perform a sequential scan on the entire table thus checking each row one by one. With an index, PostgreSQL can directly jump to the relevant rows with the same category_id making the query significantly faster.
+
 
 
 

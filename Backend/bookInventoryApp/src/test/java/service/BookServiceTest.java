@@ -93,4 +93,45 @@ public class BookServiceTest {
         verify(bookRepository, never()).findByTitleIgnoreCase(anyString()
         );
     }
+
+    @Test
+    void deleteBookById_whenBookExists_shouldDeleteBook() {
+        Long id = 1L;
+
+        when(bookRepository.existsById(id)).thenReturn(true);
+
+        bookService.deleteBookById(id);
+
+        verify(bookRepository, times(1)).existsById(id);
+        verify(bookRepository, times(1)).deleteById(id);
+    }
+
+    @Test
+    void deleteBookById_whenBookDoesNotExist_shouldThrowException() {
+        Long id = 99L;
+
+        when(bookRepository.existsById(id)).thenReturn(false);
+
+        BookNotFoundException exception =
+                assertThrows(BookNotFoundException.class, () ->
+                        bookService.deleteBookById(id)
+                );
+
+        assertEquals("Book not found with id: " + id, exception.getMessage());
+
+        verify(bookRepository, times(1)).existsById(id);
+        verify(bookRepository, never()).deleteById(anyLong());
+    }
+
+    @Test
+    void deleteBookById_whenIdIsNull_shouldThrowIllegalArgumentException() {
+
+        assertThrows(IllegalArgumentException.class, () ->
+                bookService.deleteBookById(null)
+        );
+
+        verify(bookRepository, never()).existsById(anyLong());
+        verify(bookRepository, never()).deleteById(anyLong());
+    }
+
 }

@@ -24,4 +24,18 @@ public class BookService {
         return bookRepository.findByTitleIgnoreCase(title)
                 .orElseThrow(()->new BookNotFoundException("Book Not Found"));
     }
+
+    public void deleteBookById(Long id){
+        if(id == null){
+            throw new IllegalArgumentException("Id must not be null");
+        }
+
+        if (!bookRepository.existsById(id)) {
+            throw new BookNotFoundException("Book not found with id: " + id);
+        }
+
+        bookRepository.deleteById(id);
+    }
+
+
 }

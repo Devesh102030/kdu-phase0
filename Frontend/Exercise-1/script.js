@@ -26,8 +26,14 @@ function updateTime(){
         seconds--;
     }
 
-    document.getElementById("timer-minutes").innerHTML = minutes;
-    document.getElementById("timer-seconds").innerHTML = seconds;
+    document.getElementById("timer-minutes").innerHTML = minutes;    
+
+    if(seconds >= 10){
+        document.getElementById("timer-seconds").innerHTML = seconds;
+    }else{
+        document.getElementById("timer-seconds").innerHTML = "0"+seconds;
+    }
+    
 }
 
 function startTimer(){

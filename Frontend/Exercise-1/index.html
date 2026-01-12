@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PomodoX</title>
+        <link rel="icon" href="favicon.ico">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <section class="navbar">
+            <h2 id="title">PomodoX</h2>
+            <div id="nav-line"></div>
+        </section>
+
+        <div class="timer-container">
+            <h1 id="timer-count">
+                <span id="timer-minutes">25</span>
+                <span id="colon">:</span>
+                <span id="timer-seconds">00</span>
+            </h1>
+
+            <section class="timer-controls">
+                <button id="start" onclick="startTimer()">START</button>
+                <button id="pause" onclick="pauseTimer()">PAUSE</button>
+                <button id="reset" onclick="resetTimer()">RESET</button>
+            </section>
+        </div>
+
+        <section class="sessions">
+            <h2>Sessions Completed :</h2>
+            <p id="sessions-count">0</p>
+        </section>
+
+        <div class="customize-box">
+            <h3>Set Custom timer</h3>
+            <div class="custom-input">
+                <input type="number" id="user-input" placeholder="Enter minutes" />
+                <button id="setTimerBtn" onclick="setTimer()">Set Timer</button>
+            </div>
+        </div>
+        
+        
+
+        <script src="script.js"></script>
+
+    </body>
+</html>
